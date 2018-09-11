@@ -1,13 +1,11 @@
 ﻿using BookService.WebAPI.DTO;
 using BookService.WebAPI.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookService.WebAPI.Repositories
 {
-    
+
     public class BookRepository
     {
         private BookServiceContext db;
@@ -32,5 +30,5 @@ namespace BookService.WebAPI.Repositories
         }
     }
 
-    
+
 }
