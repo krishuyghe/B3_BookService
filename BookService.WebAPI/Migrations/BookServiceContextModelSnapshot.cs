@@ -50,9 +50,9 @@ namespace BookService.WebAPI.Migrations
 
                     b.Property<int?>("AuthorId");
 
-                    b.Property<string>("ISBN");
+                    b.Property<string>("FileName");
 
-                    b.Property<string>("ImageUrl");
+                    b.Property<string>("ISBN");
 
                     b.Property<int>("NumberOfPages");
 
@@ -69,13 +69,13 @@ namespace BookService.WebAPI.Migrations
                     b.ToTable("Book");
 
                     b.HasData(
-                        new { Id = 1, AuthorId = 1, ISBN = "123456789", ImageUrl = "images/book1.jpg", NumberOfPages = 420, PublisherId = 1, Title = "Learning C#" },
-                        new { Id = 2, AuthorId = 2, ISBN = "45689132", ImageUrl = "images/book2.jpg", NumberOfPages = 360, PublisherId = 1, Title = "Mastering Linq" },
-                        new { Id = 3, AuthorId = 1, ISBN = "15856135", ImageUrl = "images/book2.jpg", NumberOfPages = 360, PublisherId = 1, Title = "Mastering Xamarin" },
-                        new { Id = 4, AuthorId = 2, ISBN = "56789564", ImageUrl = "images/book3.jpg", NumberOfPages = 360, PublisherId = 1, Title = "Exploring ASP.Net Core 2.0" },
-                        new { Id = 5, AuthorId = 2, ISBN = "234546684", ImageUrl = "images/book1.jpg", NumberOfPages = 420, PublisherId = 1, Title = "Unity Game Development" },
-                        new { Id = 6, AuthorId = 3, ISBN = "789456258", ImageUrl = "images/book3.jpg", NumberOfPages = 40, PublisherId = 2, Title = "Cooking is fun" },
-                        new { Id = 7, AuthorId = 3, ISBN = "94521546", ImageUrl = "images/book3.jpg", NumberOfPages = 53, PublisherId = 2, Title = "Secret recipes" }
+                        new { Id = 1, AuthorId = 1, FileName = "book1.jpg", ISBN = "123456789", NumberOfPages = 420, PublisherId = 1, Title = "Learning C#" },
+                        new { Id = 2, AuthorId = 2, FileName = "book2.jpg", ISBN = "45689132", NumberOfPages = 360, PublisherId = 1, Title = "Mastering Linq" },
+                        new { Id = 3, AuthorId = 1, FileName = "book3.jpg", ISBN = "15856135", NumberOfPages = 360, PublisherId = 1, Title = "Mastering Xamarin" },
+                        new { Id = 4, AuthorId = 2, FileName = "book1.jpg", ISBN = "56789564", NumberOfPages = 360, PublisherId = 1, Title = "Exploring ASP.Net Core 2.0" },
+                        new { Id = 5, AuthorId = 2, FileName = "book2.jpg", ISBN = "234546684", NumberOfPages = 420, PublisherId = 1, Title = "Unity Game Development" },
+                        new { Id = 6, AuthorId = 3, FileName = "book3.jpg", ISBN = "789456258", NumberOfPages = 40, PublisherId = 2, Title = "Cooking is fun" },
+                        new { Id = 7, AuthorId = 3, FileName = "book1.jpg", ISBN = "94521546", NumberOfPages = 53, PublisherId = 2, Title = "Secret recipes" }
                     );
                 });
 

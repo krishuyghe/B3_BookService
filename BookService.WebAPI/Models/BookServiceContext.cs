@@ -64,7 +64,7 @@ namespace BookService.WebAPI.Models
                     ISBN = "123456789",
                     Title = "Learning C#",
                     NumberOfPages = 420,
-                    ImageUrl = "book1.jpg",
+                    FileName = "book1.jpg",
                     AuthorId = 1,
                     PublisherId = 1
                 },
@@ -74,7 +74,7 @@ namespace BookService.WebAPI.Models
                     ISBN = "45689132",
                     Title = "Mastering Linq",
                     NumberOfPages = 360,
-                    ImageUrl = "book2.jpg",
+                    FileName = "book2.jpg",
                     AuthorId = 2,
                     PublisherId = 1
                 },
@@ -84,7 +84,7 @@ namespace BookService.WebAPI.Models
                     ISBN = "15856135",
                     Title = "Mastering Xamarin",
                     NumberOfPages = 360,
-                    ImageUrl = "book3.jpg",
+                    FileName = "book3.jpg",
                     AuthorId = 1,
                     PublisherId = 1
                 },
@@ -94,7 +94,7 @@ namespace BookService.WebAPI.Models
                     ISBN = "56789564",
                     Title = "Exploring ASP.Net Core 2.0",
                     NumberOfPages = 360,
-                    ImageUrl = "book1.jpg",
+                    FileName = "book1.jpg",
                     AuthorId = 2,
                     PublisherId = 1
                 },
@@ -104,7 +104,7 @@ namespace BookService.WebAPI.Models
                     ISBN = "234546684",
                     Title = "Unity Game Development",
                     NumberOfPages = 420,
-                    ImageUrl = "book2.jpg",
+                    FileName = "book2.jpg",
                     AuthorId = 2,
                     PublisherId = 1
                 },
@@ -114,7 +114,7 @@ namespace BookService.WebAPI.Models
                     ISBN = "789456258",
                     Title = "Cooking is fun",
                     NumberOfPages = 40,
-                    ImageUrl = "book3.jpg",
+                    FileName = "book3.jpg",
                     AuthorId = 3,
                     PublisherId = 2
                 },
@@ -124,7 +124,7 @@ namespace BookService.WebAPI.Models
                     ISBN = "94521546",
                     Title = "Secret recipes",
                     NumberOfPages = 53,
-                    ImageUrl = "book1.jpg",
+                    FileName = "book1.jpg",
                     AuthorId = 3,
                     PublisherId = 2
                 });

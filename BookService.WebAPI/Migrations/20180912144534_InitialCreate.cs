@@ -48,7 +48,7 @@ namespace BookService.WebAPI.Migrations
                     NumberOfPages = table.Column<int>(nullable: false),
                     AuthorId = table.Column<int>(nullable: true),
                     PublisherId = table.Column<int>(nullable: true),
-                    ImageUrl = table.Column<string>(nullable: true)
+                    FileName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -88,16 +88,16 @@ namespace BookService.WebAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "Book",
-                columns: new[] { "Id", "AuthorId", "ISBN", "ImageUrl", "NumberOfPages", "PublisherId", "Title" },
+                columns: new[] { "Id", "AuthorId", "FileName", "ISBN", "NumberOfPages", "PublisherId", "Title" },
                 values: new object[,]
                 {
-                    { 1, 1, "123456789", "images/book1.jpg", 420, 1, "Learning C#" },
-                    { 2, 2, "45689132", "images/book2.jpg", 360, 1, "Mastering Linq" },
-                    { 3, 1, "15856135", "images/book2.jpg", 360, 1, "Mastering Xamarin" },
-                    { 4, 2, "56789564", "images/book3.jpg", 360, 1, "Exploring ASP.Net Core 2.0" },
-                    { 5, 2, "234546684", "images/book1.jpg", 420, 1, "Unity Game Development" },
-                    { 6, 3, "789456258", "images/book3.jpg", 40, 2, "Cooking is fun" },
-                    { 7, 3, "94521546", "images/book3.jpg", 53, 2, "Secret recipes" }
+                    { 1, 1, "book1.jpg", "123456789", 420, 1, "Learning C#" },
+                    { 2, 2, "book2.jpg", "45689132", 360, 1, "Mastering Linq" },
+                    { 3, 1, "book3.jpg", "15856135", 360, 1, "Mastering Xamarin" },
+                    { 4, 2, "book1.jpg", "56789564", 360, 1, "Exploring ASP.Net Core 2.0" },
+                    { 5, 2, "book2.jpg", "234546684", 420, 1, "Unity Game Development" },
+                    { 6, 3, "book3.jpg", "789456258", 40, 2, "Cooking is fun" },
+                    { 7, 3, "book1.jpg", "94521546", 53, 2, "Secret recipes" }
                 });
 
             migrationBuilder.CreateIndex(
