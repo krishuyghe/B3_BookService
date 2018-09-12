@@ -15,6 +15,6 @@ namespace BookService.WebAPI.Models
         public int NumberOfPages { get; set; }
         public Author Author { get; set; }
         public Publisher Publisher { get; set; }
-        public string ImageUrl { get; set; }
+        public string FileName { get; set; }
     }
 }
