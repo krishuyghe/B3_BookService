@@ -39,7 +39,7 @@ namespace BookService.WebAPI.Controllers
         // GET: api/Book/ImageByName/filename
         [HttpGet]
         [Route("ImageByName/{filename}")]
-        public IActionResult ImageByName(string filename)
+        public IActionResult ImageByFileName(string filename)
         {
             var image = Path.Combine(Directory.GetCurrentDirectory(),
                              "wwwroot", "images", filename);
@@ -52,7 +52,7 @@ namespace BookService.WebAPI.Controllers
         public IActionResult ImageById(int bookid)
         {
             Book book = repository.ById(bookid);
-            return ImageByName(book.FileName);  
+            return ImageByFileName(book.FileName);  
         }
 
         
