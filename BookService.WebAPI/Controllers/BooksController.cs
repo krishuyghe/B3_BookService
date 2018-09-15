@@ -15,11 +15,11 @@ namespace BookService.WebAPI.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class BookController : ControllerBase
+    public class BooksController : ControllerBase
     {
         BookRepository repository;
 
-        public BookController(BookRepository bookRepository)
+        public BooksController(BookRepository bookRepository)
         {
             repository = bookRepository;
         }
