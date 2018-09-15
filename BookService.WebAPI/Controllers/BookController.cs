@@ -38,25 +38,5 @@ namespace BookService.WebAPI.Controllers
             return Ok(repository.ListBasic());
         }
 
-        // GET: api/Book/ImageByName/filename
-        [HttpGet]
-        [Route("ImageByName/{filename}")]
-        public IActionResult ImageByFileName(string filename)
-        {
-            var image = Path.Combine(Directory.GetCurrentDirectory(),
-                             "wwwroot", "images", filename);
-            return PhysicalFile(image, "image/jpeg");
-        }
-
-        // GET: api/Book/ImageById/bookid
-        [HttpGet]
-        [Route("ImageById/{bookid}")]
-        public IActionResult ImageById(int bookid)
-        {
-            Book book = repository.ById(bookid);
-            return ImageByFileName(book.FileName);
-        }
-
-
     }
 }
