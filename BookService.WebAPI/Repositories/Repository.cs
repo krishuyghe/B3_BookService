@@ -42,7 +42,7 @@ namespace BookService.WebAPI.Repositories
                    .Where(predicate).AsNoTracking();
         }
 
-        public async Task<IEnumerable<T>> ListFiltered(Expression<Func<T, bool>> predicate)
+        public async virtual Task<IEnumerable<T>> ListFiltered(Expression<Func<T, bool>> predicate)
         {
             return await GetFiltered(predicate).ToListAsync();
         }
