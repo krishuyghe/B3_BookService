@@ -19,7 +19,7 @@ namespace BookService.WebAPI.Repositories
             return db.Authors.ToList();
         }
 
-        public List<AuthorBasic> GetAuthorBasic()
+        public List<AuthorBasic> ListBasic()
         {
             // return a list of books with all Book-properties
             return db.Authors.Select(a => new AuthorBasic
