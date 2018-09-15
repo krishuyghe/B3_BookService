@@ -18,17 +18,18 @@ namespace BookService.WebAPI.Controllers
 
         // GET: api/Publishers
         [HttpGet]
-        public IActionResult GetPublishers()
+        public async Task<IActionResult> GetPublishers()
         {
-            return Ok(repository.List());
+            var publishers = await repository.ListAll();
+            return Ok(publishers);
         }
 
 
         // GET: api/Publishers/2
         [HttpGet("{id}")]
-        public IActionResult GetPublisher(int id)
+        public async Task<IActionResult> GetPublisher(int id)
         {
-            return Ok(repository.GetById(id));
+            return Ok(await repository.GetById(id));
         }
 
         // PUT: api/Publishers/5
