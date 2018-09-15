@@ -2,6 +2,7 @@
 using BookService.WebAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace BookService.WebAPI.Controllers
 {
@@ -20,24 +21,24 @@ namespace BookService.WebAPI.Controllers
 
         // GET: api/Books
         [HttpGet]
-        public IActionResult GetBooks()
+        public async Task<IActionResult> GetBooks()
         {
-            return Ok(repository.List());
+            return Ok(await repository.GetAllInclusive());
         }
 
         // GET: api/Books/Basic
         [HttpGet]
         [Route("Basic")]
-        public IActionResult GetBookBasic()
+        public async Task<IActionResult> GetBookBasic()
         {
-            return Ok(repository.ListBasic());
+            return Ok(await repository.ListBasic());
         }
 
         // GET: api/Books/3
         [HttpGet("{id}")]
-        public IActionResult GetBook(int id)
+        public async Task<IActionResult> GetBook(int id)
         {
-            return Ok(repository.GetById(id));
+            return Ok(await repository.GetById(id));
         }
 
         // GET: api/books/imagebyname/book2.jpg
@@ -53,9 +54,9 @@ namespace BookService.WebAPI.Controllers
         // GET: api/books/imagebyid/6
         [HttpGet]
         [Route("ImageById/{bookid}")]
-        public IActionResult ImageById(int bookid)
+        public async Task<IActionResult> ImageById(int bookid)
         {
-            BookDetail book = repository.GetById(bookid);
+            BookDetail book = await repository.GetDetailById(bookid);
             return ImageByFileName(book.FileName);
         }
 

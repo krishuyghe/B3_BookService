@@ -3,39 +3,38 @@ using BookService.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BookService.WebAPI.Repositories
 {
 
-    public class BookRepository
+    public class BookRepository: Repository<Book>
     {
-        private BookServiceContext db;
-        public BookRepository(BookServiceContext context)
+
+        public BookRepository(BookServiceContext context): base(context)
         {
-            db = context;
         }
-        public List<Book> List()
+        public async Task<List<Book>> GetAllInclusive()
         {
-            // return a list of books with all Book-properties
-            return db.Books
+            return await GetAll()
                 .Include(b => b.Author)
                 .Include(b => b.Publisher)
-                .ToList();
+                .ToListAsync();
         }
 
-        public List<BookBasic> ListBasic()
+        public async Task<List<BookBasic>> ListBasic()
         {
             // return a list of BookBasic DTO-items (Id and Title only)
-            return db.Books.Select(b => new BookBasic
+            return await db.Books.Select(b => new BookBasic
             {
                 Id = b.Id,
                 Title = b.Title
-            }).ToList();
+            }).ToListAsync();
         }
 
-        public BookDetail GetById(int id)
+        public async Task<BookDetail> GetDetailById(int id)
         {
-            return db.Books.Select(b => new BookDetail
+            return await db.Books.Select(b => new BookDetail
             {
                 Id = b.Id,
                 Title = b.Title,
@@ -48,7 +47,7 @@ namespace BookService.WebAPI.Repositories
                 PublisherId = b.Publisher.Id,
                 PublisherName = b.Publisher.Name,
                 FileName = b.FileName
-            }).FirstOrDefault(b => b.Id == id);
+            }).FirstOrDefaultAsync(b => b.Id == id);
         }
     }
 
