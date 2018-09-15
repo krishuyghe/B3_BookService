@@ -23,14 +23,14 @@ namespace BookService.WebAPI.Controllers
             repository = bookRepository;
         }
 
-        // GET: api/Book
+        // GET: api/Books
         [HttpGet]
         public IActionResult GetBooks()
         {
             return Ok(repository.List());
         }
 
-        // GET: api/Book/Basic
+        // GET: api/Books/Basic
         [HttpGet]
         [Route("Basic")]
         public IActionResult GetBookBasic()
