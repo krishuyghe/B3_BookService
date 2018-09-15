@@ -39,14 +39,14 @@ namespace BookService.WebAPI.Controllers
             return Ok(repository.ListBasic());
         }
 
-        // GET: api/Book/3
+        // GET: api/Books/3
         [HttpGet("{id}")]
         public IActionResult GetBook(int id)
         {
             return Ok(repository.GetById(id));
         }
 
-        // GET: api/book/imagebyname/book2.jpg
+        // GET: api/books/imagebyname/book2.jpg
         [HttpGet]
         [Route("ImageByName/{filename}")]
         public IActionResult ImageByFileName(string filename)
@@ -56,7 +56,7 @@ namespace BookService.WebAPI.Controllers
             return PhysicalFile(image, "image/jpeg");
         }
 
-        // GET: api/book/imagebyid/6
+        // GET: api/books/imagebyid/6
         [HttpGet]
         [Route("ImageById/{bookid}")]
         public IActionResult ImageById(int bookid)
