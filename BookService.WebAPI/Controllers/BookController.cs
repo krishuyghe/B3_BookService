@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using BookService.WebAPI.Models;
 using BookService.WebAPI.Repositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 namespace BookService.WebAPI.Controllers
 {
-    
+
 
     [Route("api/[controller]")]
     [ApiController]
@@ -45,16 +47,16 @@ namespace BookService.WebAPI.Controllers
                              "wwwroot", "images", filename);
             return PhysicalFile(image, "image/jpeg");
         }
-        
+
         // GET: api/Book/ImageById/bookid
         [HttpGet]
         [Route("ImageById/{bookid}")]
         public IActionResult ImageById(int bookid)
         {
             Book book = repository.ById(bookid);
-            return ImageByFileName(book.FileName);  
+            return ImageByFileName(book.FileName);
         }
 
-        
+
     }
 }
