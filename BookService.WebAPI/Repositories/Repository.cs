@@ -10,7 +10,7 @@ namespace BookService.WebAPI.Repositories
 {
     public class Repository<T> : IRepository<T> where T : EntityBase
     {
-        private readonly BookServiceContext db;
+        protected readonly BookServiceContext db;
 
         public Repository(BookServiceContext context)
         {

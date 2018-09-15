@@ -1,38 +1,27 @@
 ﻿using BookService.WebAPI.DTO;
 using BookService.WebAPI.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BookService.WebAPI.Repositories
 {
-    public class AuthorRepository
+    public class AuthorRepository: Repository<Author>
     {
-        private BookServiceContext db;
-        public AuthorRepository(BookServiceContext context)
+        public AuthorRepository(BookServiceContext context): base(context)
         {
-            db = context;
         }
 
-        public List<Author> List()
+        public async Task<List<AuthorBasic>> ListBasic()
         {
-            // return a list of books with all Book-properties
-            return db.Authors.ToList();
-        }
-
-        public List<AuthorBasic> ListBasic()
-        {
-            // return a list of books with all Book-properties
-            return db.Authors.Select(a => new AuthorBasic
+            var authors = await db.Authors.Select(a => new AuthorBasic
             {
                 Id = a.Id,
                 Name = $"{a.LastName} {a.FirstName}"
 
-            }).ToList();
-        }
-
-        public Author GetById(int id)
-        {
-            return db.Authors.FirstOrDefault(a => a.Id == id);
+            }).ToListAsync();
+            return authors;
         }
     }
 }
