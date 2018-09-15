@@ -51,7 +51,7 @@ namespace BookService.WebAPI.Controllers
                 return NotFound();
             }
 
-            return NoContent();
+            return Ok(p);
         }
 
         // POST: api/Publishers
