@@ -48,7 +48,7 @@ namespace BookService.WebAPI.Repositories
                 PublisherId = b.Publisher.Id,
                 PublisherName = b.Publisher.Name,
                 FileName = b.FileName
-            }).FirstOrDefault();
+            }).FirstOrDefault(b => b.Id == id);
         }
     }
 
