@@ -16,7 +16,8 @@ namespace BookService.WebAPI.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
-                    BirthDate = table.Column<DateTime>(nullable: false)
+                    BirthDate = table.Column<DateTime>(nullable: false),
+                    Created = table.Column<DateTime>(defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
                 {
@@ -30,7 +31,8 @@ namespace BookService.WebAPI.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
-                    Country = table.Column<string>(nullable: true)
+                    Country = table.Column<string>(nullable: true),
+                    Created = table.Column<DateTime>(defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
                 {
@@ -48,7 +50,8 @@ namespace BookService.WebAPI.Migrations
                     NumberOfPages = table.Column<int>(nullable: false),
                     AuthorId = table.Column<int>(nullable: true),
                     PublisherId = table.Column<int>(nullable: true),
-                    FileName = table.Column<string>(nullable: true)
+                    FileName = table.Column<string>(nullable: true),
+                    Created = table.Column<DateTime>(defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
                 {

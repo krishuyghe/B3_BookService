@@ -12,23 +12,23 @@ namespace BookService.WebAPI.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Singularize table names
-            modelBuilder.Entity<Publisher>()
-                .ToTable("Publisher")
-                .HasData(
-                 new Publisher
-                 {
-                     Id = 1,
-                     Name = "IT-publishers",
-                     Country = "UK"
-                 },
-                new Publisher
-                {
-                    Id = 2,
-                    Name = "FoodBooks",
-                    Country = "Sweden"
-                }
-                );
+            
+            modelBuilder.Entity<Publisher>().ToTable("Publisher")
+            .HasData(
+             new Publisher
+             {
+                 Id = 1,
+                 Name = "IT-publishers",
+                 Country = "UK"
+             },
+            new Publisher
+            {
+                Id = 2,
+                Name = "FoodBooks",
+                Country = "Sweden"
+            }
+            );
+
             modelBuilder.Entity<Author>()
                 .ToTable("Author")
                 .HasData(
@@ -54,7 +54,6 @@ namespace BookService.WebAPI.Models
                     BirthDate = new DateTime(1996, 8, 12)
                 });
 
-            // using ANONYMOUS CLASS to construct Books in Db (AuthorId and PublisherId are no real properties 
             modelBuilder.Entity<Book>()
                 .ToTable("Book")
                 .HasData(
