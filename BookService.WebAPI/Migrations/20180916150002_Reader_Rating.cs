@@ -36,10 +36,10 @@ namespace BookService.WebAPI.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    //Created = table.Column<DateTime>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
                     FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    Created = table.Column<DateTime>(defaultValueSql: "GETDATE()")
+                    LastName = table.Column<string>(nullable: true)
+                    
                 },
                 constraints: table =>
                 {
@@ -52,11 +52,10 @@ namespace BookService.WebAPI.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    //Created = table.Column<DateTime>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: true, defaultValueSql: "GETDATE()"),
                     ReaderId = table.Column<int>(nullable: false),
                     BookId = table.Column<int>(nullable: false),
                     Score = table.Column<int>(nullable: false),
-                    Created = table.Column<DateTime>(defaultValueSql: "GETDATE()")
                 },
                 constraints: table =>
                 {
