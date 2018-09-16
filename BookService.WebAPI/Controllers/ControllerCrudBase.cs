@@ -44,13 +44,13 @@ namespace BookService.WebAPI.Controllers
                 return BadRequest();
             }
 
-            T p = await repository.Update(entity);
-            if (p == null)
+            T e = await repository.Update(entity);
+            if (e == null)
             {
                 return NotFound();
             }
 
-            return Ok(p);
+            return Ok(e);
         }
 
         // POST: api/T
@@ -62,8 +62,11 @@ namespace BookService.WebAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            await repository.Add(entity);
-
+            T e = await repository.Add(entity);
+            if (e == null)
+            {
+                return NotFound();
+            }
 
             return CreatedAtAction("Get", new { id = entity.Id }, entity);
         }
