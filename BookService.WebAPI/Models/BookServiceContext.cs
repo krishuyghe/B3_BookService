@@ -141,9 +141,43 @@ namespace BookService.WebAPI.Models
                     AuthorId = 3,
                     PublisherId = 2
                 });
+
+            modelBuilder.Entity<Reader>().ToTable("Reader")
+            .HasData(
+             new Reader
+             {
+                 Id = 1,
+                 FirstName = "Joe",
+                 LastName = "Pageturner"
+             },
+            new Reader
+            {
+                Id = 2,
+                FirstName = "Linda",
+                LastName = "Bookslaughter"
+            },
+            new Reader
+            {
+                Id = 3,
+                FirstName = "Wendy",
+                LastName = "Allreader"
+            }
+            );
+
+            modelBuilder.Entity<Rating>().ToTable("Rating")
+           .HasData(
+            new Rating { Id = 1, ReaderId = 1, BookId = 1, Score = 3 },
+            new Rating { Id = 2, ReaderId = 1, BookId = 2, Score = 2 },
+            new Rating { Id = 3, ReaderId = 2, BookId = 3, Score = 5 },
+            new Rating { Id = 4, ReaderId = 2, BookId = 1, Score = 4 },
+            new Rating { Id = 5, ReaderId = 3, BookId = 2, Score = 2 },
+            new Rating { Id = 6, ReaderId = 3, BookId = 3, Score = 3 });
         }
         public DbSet<Publisher> Publishers { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Reader> Readers { get; set; }
+
+        public DbSet<Rating> Ratings { get; set; }
     }
 }
