@@ -10,7 +10,7 @@ namespace BookService.WebAPI.Repositories
 {
     public class Repository<T> : IRepository<T> where T : EntityBase
     {
-        private readonly BookServiceContext db;
+        protected readonly BookServiceContext db;
 
         public Repository(BookServiceContext context)
         {
@@ -28,7 +28,6 @@ namespace BookService.WebAPI.Repositories
             // Entities won't be manipulated directly on this set --> faster with AsNoTracking()
             return db.Set<T>().AsNoTracking();
         }
-
 
         public async Task<IEnumerable<T>> ListAll()
         {
@@ -50,36 +49,55 @@ namespace BookService.WebAPI.Repositories
         public async Task<T> Add(T entity)
         {
             db.Set<T>().Add(entity);
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch
+            {
+                return null;
+            }
             return entity;
         }
 
         public async Task<T> Update(T entity)
         {
             db.Entry(entity).State = EntityState.Modified;
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch
+            {
+                return null;
+            }
             return entity;
         }
 
         public async Task<T> Delete(T entity)
         {
             db.Set<T>().Remove(entity);
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch
+            {
+                return null;
+            }
             return entity;
         }
 
         public async Task<T> Delete(int id)
         {
-            return await Delete( await GetById(id));
+            var entity = await GetById(id);
+            if (entity == null) return null;
+            return await Delete(entity);
         }
 
         private async Task<bool> Exists(int id)
         {
             return await db.Set<T>().AnyAsync(e => e.Id == id);
         }
-
-
-
-        
     }
 }
