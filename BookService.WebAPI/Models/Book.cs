@@ -8,10 +8,11 @@ namespace BookService.WebAPI.Models
         public string ISBN { get; set; }
         [Display(Name = "#")]
         public int Year { get; set; }
-
         public decimal Price { get; set; }
         public int NumberOfPages { get; set; }
+        public int AuthorId { get; set; }
         public Author Author { get; set; }
+        public int PublisherId { get; set; }
         public Publisher Publisher { get; set; }
         public string FileName { get; set; }
     }
