@@ -29,7 +29,6 @@ namespace BookService.WebAPI.Repositories
             return db.Set<T>().AsNoTracking();
         }
 
-
         public async Task<IEnumerable<T>> ListAll()
         {
             return await GetAll().ToListAsync();
@@ -50,36 +49,55 @@ namespace BookService.WebAPI.Repositories
         public async Task<T> Add(T entity)
         {
             db.Set<T>().Add(entity);
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch
+            {
+                return null;
+            }
             return entity;
         }
 
         public async Task<T> Update(T entity)
         {
             db.Entry(entity).State = EntityState.Modified;
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch
+            {
+                return null;
+            }
             return entity;
         }
 
         public async Task<T> Delete(T entity)
         {
             db.Set<T>().Remove(entity);
-            await db.SaveChangesAsync();
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch
+            {
+                return null;
+            }
             return entity;
         }
 
         public async Task<T> Delete(int id)
         {
-            return await Delete( await GetById(id));
+            var entity = await GetById(id);
+            if (entity == null) return null;
+            return await Delete(entity);
         }
 
         private async Task<bool> Exists(int id)
         {
             return await db.Set<T>().AnyAsync(e => e.Id == id);
         }
-
-
-
-        
     }
 }
