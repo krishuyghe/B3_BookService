@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookService.WebAPI.Models
 {
@@ -15,5 +16,6 @@ namespace BookService.WebAPI.Models
         public int PublisherId { get; set; }
         public Publisher Publisher { get; set; }
         public string FileName { get; set; }
+        public ICollection<Rating> Ratings { get; set; }
     }
 }
