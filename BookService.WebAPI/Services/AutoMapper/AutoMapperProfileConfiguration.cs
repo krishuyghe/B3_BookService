@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using BookService.WebAPI.DTO;
-using BookService.WebAPI.Models;
+using BookService.Lib.DTO;
+using BookService.Lib.Models;
 using System.Linq;
 
 namespace BookService.WebAPI.Services.AutoMapper
 {
     public class AutoMapperProfileConfiguration : Profile
     {
-        public AutoMapperProfileConfiguration(): this("MyProfile")
+        public AutoMapperProfileConfiguration() : this("MyProfile")
         {
         }
         protected AutoMapperProfileConfiguration(string profileName)

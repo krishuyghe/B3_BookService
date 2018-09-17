@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using BookService.Lib.Models;
 using BookService.WebAPI.Models;
 using BookService.WebAPI.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +11,7 @@ namespace BookService.WebAPI.Repositories
     {
         public RatingRepository(BookServiceContext context) : base(context)
         {
-            
+
         }
 
         public async Task<List<Rating>> GetAllInclusive()

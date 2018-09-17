@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BookService.WebAPI.Models
+namespace BookService.Lib.Models
 {
     public class Reader : EntityBase
     {

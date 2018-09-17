@@ -1,5 +1,5 @@
-﻿using BookService.WebAPI.DTO;
-using BookService.WebAPI.Models;
+﻿using BookService.Lib.DTO;
+using BookService.Lib.Models;
 using BookService.WebAPI.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +15,7 @@ namespace BookService.WebAPI.Controllers
     public class BooksController : ControllerCrudBase<Book, BookRepository>
     {
 
-        public BooksController(BookRepository bookRepository): base (bookRepository)
+        public BooksController(BookRepository bookRepository) : base(bookRepository)
         {
         }
 

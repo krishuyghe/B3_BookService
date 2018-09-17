@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using BookService.WebAPI.DTO;
+using BookService.Lib.DTO;
+using BookService.Lib.Models;
 using BookService.WebAPI.Models;
 using BookService.WebAPI.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,7 @@ namespace BookService.WebAPI.Repositories
     {
         public PublisherRepository(BookServiceContext context, IMapper mapper) : base(context, mapper)
         {
-            
+
         }
 
         public async Task<List<PublisherBasic>> ListBasic()
