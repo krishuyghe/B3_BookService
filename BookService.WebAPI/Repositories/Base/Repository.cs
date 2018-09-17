@@ -6,16 +6,18 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace BookService.WebAPI.Repositories
+namespace BookService.WebAPI.Repositories.Base
 {
     public class Repository<T> : IRepository<T> where T : EntityBase
     {
         protected readonly BookServiceContext db;
 
+
         public Repository(BookServiceContext context)
         {
             db = context;
         }
+
 
         public virtual async Task<T> GetById(int id)
         {
@@ -53,7 +55,8 @@ namespace BookService.WebAPI.Repositories
             try
             {
                 await db.SaveChangesAsync();
-            } catch
+            }
+            catch
             {
                 return null;
             }
@@ -102,6 +105,6 @@ namespace BookService.WebAPI.Repositories
 
 
 
-        
+
     }
 }

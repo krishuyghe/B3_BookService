@@ -1,5 +1,7 @@
-﻿using BookService.WebAPI.DTO;
+﻿using AutoMapper;
+using BookService.WebAPI.DTO;
 using BookService.WebAPI.Models;
+using BookService.WebAPI.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ namespace BookService.WebAPI.Repositories
 {
     public class AuthorRepository: Repository<Author>
     {
-        public AuthorRepository(BookServiceContext context): base(context)
+        public AuthorRepository(BookServiceContext context) : base(context)
         {
         }
 

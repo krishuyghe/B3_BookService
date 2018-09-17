@@ -1,5 +1,5 @@
 ﻿using BookService.WebAPI.Models;
-using BookService.WebAPI.Repositories;
+using BookService.WebAPI.Repositories.Base;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -10,7 +10,6 @@ namespace BookService.WebAPI.Controllers
         where R : Repository<T>
     {
         protected R repository;
-
         public ControllerCrudBase(R r)
         {
             repository = r;
