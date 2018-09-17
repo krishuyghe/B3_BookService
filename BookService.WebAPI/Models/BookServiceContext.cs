@@ -172,12 +172,37 @@ namespace BookService.WebAPI.Models
             new Rating { Id = 4, ReaderId = 2, BookId = 1, Score = 4 },
             new Rating { Id = 5, ReaderId = 3, BookId = 2, Score = 2 },
             new Rating { Id = 6, ReaderId = 3, BookId = 3, Score = 3 });
+
+            modelBuilder.Entity<Publisher>()
+                .Property(p => p.Created)
+                .HasDefaultValueSql("GETDATE()")
+                .ValueGeneratedOnAddOrUpdate();
+
+            modelBuilder.Entity<Author>()
+                .Property(p => p.Created)
+                .HasDefaultValueSql("GETDATE()")
+                .ValueGeneratedOnAddOrUpdate();
+
+            modelBuilder.Entity<Book>()
+                .Property(p => p.Created)
+                .HasDefaultValueSql("GETDATE()")
+                .ValueGeneratedOnAddOrUpdate();
+
+            modelBuilder.Entity<Rating>()
+                .Property(p => p.Created)
+                .HasDefaultValueSql("GETDATE()")
+                .ValueGeneratedOnAddOrUpdate();
+
+            modelBuilder.Entity<Reader>()
+                .Property(p => p.Created)
+                .HasDefaultValueSql("GETDATE()")
+                .ValueGeneratedOnAddOrUpdate();
+
         }
         public DbSet<Publisher> Publishers { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Reader> Readers { get; set; }
-
         public DbSet<Rating> Ratings { get; set; }
     }
 }

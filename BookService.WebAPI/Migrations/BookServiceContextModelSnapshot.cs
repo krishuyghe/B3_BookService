@@ -27,7 +27,9 @@ namespace BookService.WebAPI.Migrations
 
                     b.Property<DateTime>("BirthDate");
 
-                    b.Property<DateTime?>("Created");
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("FirstName");
 
@@ -38,9 +40,9 @@ namespace BookService.WebAPI.Migrations
                     b.ToTable("Author");
 
                     b.HasData(
-                        new { Id = 1, BirthDate = new DateTime(1980, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), FirstName = "James", LastName = "Sharp" },
-                        new { Id = 2, BirthDate = new DateTime(1992, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), FirstName = "Sophie", LastName = "Netty" },
-                        new { Id = 3, BirthDate = new DateTime(1996, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), FirstName = "Elisa", LastName = "Yammy" }
+                        new { Id = 1, BirthDate = new DateTime(1980, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), Created = new DateTime(2018, 9, 17, 9, 51, 5, 184, DateTimeKind.Local), FirstName = "James", LastName = "Sharp" },
+                        new { Id = 2, BirthDate = new DateTime(1992, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), Created = new DateTime(2018, 9, 17, 9, 51, 5, 184, DateTimeKind.Local), FirstName = "Sophie", LastName = "Netty" },
+                        new { Id = 3, BirthDate = new DateTime(1996, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), Created = new DateTime(2018, 9, 17, 9, 51, 5, 184, DateTimeKind.Local), FirstName = "Elisa", LastName = "Yammy" }
                     );
                 });
 
@@ -52,7 +54,9 @@ namespace BookService.WebAPI.Migrations
 
                     b.Property<int>("AuthorId");
 
-                    b.Property<DateTime?>("Created");
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("FileName");
 
@@ -95,7 +99,9 @@ namespace BookService.WebAPI.Migrations
 
                     b.Property<string>("Country");
 
-                    b.Property<DateTime?>("Created");
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("Name");
 
@@ -104,8 +110,8 @@ namespace BookService.WebAPI.Migrations
                     b.ToTable("Publisher");
 
                     b.HasData(
-                        new { Id = 1, Country = "UK", Name = "IT-publishers" },
-                        new { Id = 2, Country = "Sweden", Name = "FoodBooks" }
+                        new { Id = 1, Country = "UK", Created = new DateTime(2018, 9, 17, 9, 51, 5, 184, DateTimeKind.Local), Name = "IT-publishers" },
+                        new { Id = 2, Country = "Sweden", Created = new DateTime(2018, 9, 17, 9, 51, 5, 184, DateTimeKind.Local), Name = "FoodBooks" }
                     );
                 });
 
@@ -117,7 +123,9 @@ namespace BookService.WebAPI.Migrations
 
                     b.Property<int>("BookId");
 
-                    b.Property<DateTime?>("Created");
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<int>("ReaderId");
 
@@ -132,12 +140,12 @@ namespace BookService.WebAPI.Migrations
                     b.ToTable("Rating");
 
                     b.HasData(
-                        new { Id = 1, BookId = 1, ReaderId = 1, Score = 3 },
-                        new { Id = 2, BookId = 2, ReaderId = 1, Score = 2 },
-                        new { Id = 3, BookId = 3, ReaderId = 2, Score = 5 },
-                        new { Id = 4, BookId = 1, ReaderId = 2, Score = 4 },
-                        new { Id = 5, BookId = 2, ReaderId = 3, Score = 2 },
-                        new { Id = 6, BookId = 3, ReaderId = 3, Score = 3 }
+                        new { Id = 1, BookId = 1, Created = new DateTime(2018, 9, 17, 9, 51, 5, 184, DateTimeKind.Local), ReaderId = 1, Score = 3 },
+                        new { Id = 2, BookId = 2, Created = new DateTime(2018, 9, 17, 9, 51, 5, 185, DateTimeKind.Local), ReaderId = 1, Score = 2 },
+                        new { Id = 3, BookId = 3, Created = new DateTime(2018, 9, 17, 9, 51, 5, 185, DateTimeKind.Local), ReaderId = 2, Score = 5 },
+                        new { Id = 4, BookId = 1, Created = new DateTime(2018, 9, 17, 9, 51, 5, 185, DateTimeKind.Local), ReaderId = 2, Score = 4 },
+                        new { Id = 5, BookId = 2, Created = new DateTime(2018, 9, 17, 9, 51, 5, 185, DateTimeKind.Local), ReaderId = 3, Score = 2 },
+                        new { Id = 6, BookId = 3, Created = new DateTime(2018, 9, 17, 9, 51, 5, 185, DateTimeKind.Local), ReaderId = 3, Score = 3 }
                     );
                 });
 
@@ -147,7 +155,9 @@ namespace BookService.WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("Created");
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("FirstName");
 
@@ -158,9 +168,9 @@ namespace BookService.WebAPI.Migrations
                     b.ToTable("Reader");
 
                     b.HasData(
-                        new { Id = 1, FirstName = "Joe", LastName = "Pageturner" },
-                        new { Id = 2, FirstName = "Linda", LastName = "Bookslaughter" },
-                        new { Id = 3, FirstName = "Wendy", LastName = "Allreader" }
+                        new { Id = 1, Created = new DateTime(2018, 9, 17, 9, 51, 5, 185, DateTimeKind.Local), FirstName = "Joe", LastName = "Pageturner" },
+                        new { Id = 2, Created = new DateTime(2018, 9, 17, 9, 51, 5, 185, DateTimeKind.Local), FirstName = "Linda", LastName = "Bookslaughter" },
+                        new { Id = 3, Created = new DateTime(2018, 9, 17, 9, 51, 5, 185, DateTimeKind.Local), FirstName = "Wendy", LastName = "Allreader" }
                     );
                 });
 
