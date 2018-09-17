@@ -34,6 +34,14 @@ namespace BookService.WebAPI.Controllers
             return Ok(await repository.ListBasic());
         }
 
+        // GET: api/Books/Statistics
+        [HttpGet]
+        [Route("Statistics")]
+        public async Task<IActionResult> GetBookStatistics()
+        {
+            return Ok(await repository.ListStatistics());
+        }
+
         // GET: api/Books/Detail
         [HttpGet]
         [Route("Detail/{id}")]

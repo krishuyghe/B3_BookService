@@ -33,6 +33,27 @@ namespace BookService.WebAPI.Repositories
                 .ToListAsync();
         }
 
+        public async Task<List<BookStatistics>> ListStatistics()
+        {
+            //Manuele query
+            //return await db.Books
+            //    .Include(b => b.Ratings)
+            //    .Where(b => b.Ratings.Count > 0)
+            //    .Select(b => new BookStatistics
+            //    {
+            //        Id = b.Id,
+            //        Title = b.Title,
+            //        RatingsCount = b.Ratings.Count,
+            //        ScoreAverage = b.Ratings.Average(r => r.Score)
+            //    }).ToListAsync();
+
+            return await db.Books
+                .Include(b => b.Ratings)
+                .Where(b => b.Ratings.Count > 0)
+                .ProjectTo<BookStatistics>(mapper.ConfigurationProvider)
+                .ToListAsync();
+        }
+
         public async Task<BookDetail> GetDetailById(int id)
         {
             return  mapper.Map<BookDetail>(
