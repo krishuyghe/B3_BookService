@@ -15,7 +15,7 @@ namespace BookService.WebAPI.Models
             
             modelBuilder.Entity<Publisher>().ToTable("Publisher")
             .HasData(
-             new Publisher
+            new Publisher
              {
                  Id = 1,
                  Name = "IT-publishers",
@@ -37,7 +37,7 @@ namespace BookService.WebAPI.Models
                     Id = 1,
                     FirstName = "James",
                     LastName = "Sharp",
-                    BirthDate = new DateTime(1980, 5, 20)
+                    BirthDate = new DateTime(1980, 5, 20)  
                 },
                 new Author
                 {
@@ -141,6 +141,21 @@ namespace BookService.WebAPI.Models
                     AuthorId = 3,
                     PublisherId = 2
                 });
+
+            modelBuilder.Entity<Publisher>()
+                .Property(p => p.Created)
+                .HasDefaultValueSql("GETDATE()")
+                .ValueGeneratedOnAddOrUpdate();
+
+            modelBuilder.Entity<Author>()
+                .Property(p => p.Created)
+                .HasDefaultValueSql("GETDATE()")
+                .ValueGeneratedOnAddOrUpdate();
+
+            modelBuilder.Entity<Book>()
+                .Property(p => p.Created)
+                .HasDefaultValueSql("GETDATE()")
+                .ValueGeneratedOnAddOrUpdate();
         }
         public DbSet<Publisher> Publishers { get; set; }
         public DbSet<Author> Authors { get; set; }
