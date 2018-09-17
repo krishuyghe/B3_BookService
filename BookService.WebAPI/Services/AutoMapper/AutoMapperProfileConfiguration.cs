@@ -12,6 +12,7 @@ namespace BookService.WebAPI.Services.AutoMapper
         protected AutoMapperProfileConfiguration(string profileName)
         : base(profileName)
         {
+            CreateMap<PublisherBasic, Publisher>();
             CreateMap<BookBasic, Book>();
             CreateMap<Book, BookDetail>()
                 .ForMember(dest => dest.AuthorName,
