@@ -35,20 +35,13 @@ namespace BookService.WebAPI.Repositories
 
         public async Task<BookDetail> GetDetailById(int id)
         {
-            return await db.Books.Select(b => new BookDetail
-            {
-                Id = b.Id,
-                Title = b.Title,
-                ISBN = b.ISBN,
-                Year = b.Year,
-                Price = b.Price,
-                NumberOfPages = b.NumberOfPages,
-                AuthorId = b.Author.Id,
-                AuthorName = $"{b.Author.LastName} {b.Author.FirstName}",
-                PublisherId = b.Publisher.Id,
-                PublisherName = b.Publisher.Name,
-                FileName = b.FileName
-            }).FirstOrDefaultAsync(b => b.Id == id);
+            return  mapper.Map<BookDetail>(
+                        await db.Books
+                                .Include(b => b.Author)
+                                .Include(b => b.Publisher)
+                                .FirstOrDefaultAsync(b => b.Id == id)
+                );
+            
         }
     }
 
