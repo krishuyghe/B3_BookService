@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookService.WebAPI.Migrations
 {
     [DbContext(typeof(BookServiceContext))]
-    [Migration("20180915184226_CreatedDate")]
-    partial class CreatedDate
+    [Migration("20180917071936_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,7 +29,9 @@ namespace BookService.WebAPI.Migrations
 
                     b.Property<DateTime>("BirthDate");
 
-                    b.Property<DateTime?>("Created");
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("FirstName");
 
@@ -40,9 +42,9 @@ namespace BookService.WebAPI.Migrations
                     b.ToTable("Author");
 
                     b.HasData(
-                        new { Id = 1, BirthDate = new DateTime(1980, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), FirstName = "James", LastName = "Sharp" },
-                        new { Id = 2, BirthDate = new DateTime(1992, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), FirstName = "Sophie", LastName = "Netty" },
-                        new { Id = 3, BirthDate = new DateTime(1996, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), FirstName = "Elisa", LastName = "Yammy" }
+                        new { Id = 1, BirthDate = new DateTime(1980, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), Created = new DateTime(2018, 9, 17, 9, 19, 36, 385, DateTimeKind.Local), FirstName = "James", LastName = "Sharp" },
+                        new { Id = 2, BirthDate = new DateTime(1992, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), Created = new DateTime(2018, 9, 17, 9, 19, 36, 385, DateTimeKind.Local), FirstName = "Sophie", LastName = "Netty" },
+                        new { Id = 3, BirthDate = new DateTime(1996, 8, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), Created = new DateTime(2018, 9, 17, 9, 19, 36, 385, DateTimeKind.Local), FirstName = "Elisa", LastName = "Yammy" }
                     );
                 });
 
@@ -54,7 +56,9 @@ namespace BookService.WebAPI.Migrations
 
                     b.Property<int?>("AuthorId");
 
-                    b.Property<DateTime?>("Created");
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("FileName");
 
@@ -97,7 +101,9 @@ namespace BookService.WebAPI.Migrations
 
                     b.Property<string>("Country");
 
-                    b.Property<DateTime?>("Created");
+                    b.Property<DateTime?>("Created")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("Name");
 
@@ -106,8 +112,8 @@ namespace BookService.WebAPI.Migrations
                     b.ToTable("Publisher");
 
                     b.HasData(
-                        new { Id = 1, Country = "UK", Name = "IT-publishers" },
-                        new { Id = 2, Country = "Sweden", Name = "FoodBooks" }
+                        new { Id = 1, Country = "UK", Created = new DateTime(2018, 9, 17, 9, 19, 36, 386, DateTimeKind.Local), Name = "IT-publishers" },
+                        new { Id = 2, Country = "Sweden", Created = new DateTime(2018, 9, 17, 9, 19, 36, 386, DateTimeKind.Local), Name = "FoodBooks" }
                     );
                 });
 
