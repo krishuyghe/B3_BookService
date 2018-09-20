@@ -9,10 +9,11 @@
             @foreach (PublisherBasic publisherBasic in Model)
             {
                 <li class="list-group-item">
-                    <a asp-controller="Publishers" asp-action="Detail" asp-route-id="@publisherBasic.Id">@publisherBasic.Name</a>
+                    <a class="btn btn-xs btn-danger" asp-action="Delete" asp-route-id="@publisherBasic.Id">x</a> <a asp-controller="Publishers" asp-action="Detail" asp-route-id="@publisherBasic.Id">@publisherBasic.Name</a> 
                 </li>
             }
         </ul>
+        <a class="btn btn-warning" asp-action="Insert">Insert</a>
     </div>
 </div>
 
