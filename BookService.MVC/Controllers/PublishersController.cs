@@ -21,9 +21,15 @@ namespace BookService.MVC.Controllers
         public IActionResult Detail(int id)
         {
             string uri = $"{baseuri}/{id}";
+            ViewBag.Mode = "Detail";
+            return View(WebApiHelper.GetApiResult<Publisher>(uri));            
+        }
 
-            return View(WebApiHelper.GetApiResult<Publisher>(uri));
-                
+        public IActionResult Edit(int id)
+        {
+            string uri = $"{baseuri}/{id}";
+            ViewBag.Mode = "Edit";
+            return View("Detail",WebApiHelper.GetApiResult<Publisher>(uri));
         }
     }
 }
