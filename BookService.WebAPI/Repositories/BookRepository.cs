@@ -18,6 +18,7 @@ namespace BookService.WebAPI.Repositories
         public BookRepository(BookServiceContext context, IMapper mapper) : base(context, mapper)
         {
         }
+
         public async Task<List<Book>> GetAllInclusive()
         {
             return await GetAll()
@@ -31,6 +32,7 @@ namespace BookService.WebAPI.Repositories
             // return a list of BookBasic DTO-items (Id and Title only) using AutoMapper
             return await db.Books
                 .ProjectTo<BookBasic>(mapper.ConfigurationProvider)
+                .OrderBy(b => b.Title)
                 .ToListAsync();
         }
 
