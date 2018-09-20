@@ -6,6 +6,7 @@ using BookService.WebAPI.Models;
 using BookService.WebAPI.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BookService.WebAPI.Repositories
@@ -22,6 +23,7 @@ namespace BookService.WebAPI.Repositories
             // return a list of BookBasic DTO-items (Id and Title only) using AutoMapper
             return await db.Publishers
                 .ProjectTo<PublisherBasic>(mapper.ConfigurationProvider)
+                .OrderBy(p => p.Name)
                 .ToListAsync();
         }
     }
