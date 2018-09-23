@@ -9,7 +9,7 @@
         <h3>{{ message }}</h3>   @*Vue mustache*@
         <nav>
             <ul class="list-group">
-                <li class="list-group-item" v-for="book in books">
+                <li v-for="book in books" v-on:click="fetchBookDetails(book)" :class="getBookClass(book)" style="cursor:pointer">
                     <span class="bookTitle">{{ book.title }}</span>
                 </li>
             </ul>
@@ -38,10 +38,22 @@
                     fetch(`${apiURL}`)
                         .then(res => res.json())
                         .then(function (books) {
+                            books.forEach(function (book, i) {
+                                book.isActive = false;
+                            });
                             self.books = books;
                             self.message = 'Overview';
                         })
                         .catch(err => console.error('Fout: ' + err));
+                },
+                fetchBookDetails: function (book) {
+                    self = this;
+                    self.books.forEach(function (book2, i) { book2.isActive = false; })
+                    book.isActive = true;
+                },
+                getBookClass: function (book) {
+                    if (book.isActive) return 'list-group-item active';
+                    return 'list-group-item';
                 },
             }
         });
