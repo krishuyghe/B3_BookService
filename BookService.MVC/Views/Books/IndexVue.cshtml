@@ -68,6 +68,7 @@
             </div>
             <button v-on:click="toEditMode(true)" v-if="isReadOnly" class="btn btn-primary">Edit</button>
             <button v-on:click="toEditMode(false)" v-if="isReadOnly" class="btn btn-warning">New</button>
+            <button v-on:click="deleteBook()" v-if="isReadOnly" class="btn btn-danger">Delete</button>
             <button v-on:click="save" v-if="!isReadOnly" class="btn btn-primary">Save</button>
             <button v-on:click="cancel" v-if="!isReadOnly" class="btn btn-default">Cancel</button>
         </div>
@@ -183,10 +184,7 @@
                         fetch(myRequest)
                             .then(res => res.json())
                             .then(res => {
-                                // het geupdate boek uit de boekenlijst ophalen (dit is een lijst van BookBasic-elementen)
-                                var book = self.books.filter(book => book.id === self.currentBook.id)[0];
-                                // gegevens aanpassen
-                                book.title = self.currentBook.title;
+                                self.updateBookList(res);
                             })
                             .catch(err => console.error('Fout: ' + err));
                     }
@@ -204,17 +202,46 @@
                     self.isReadOnly = true;
                 },
                 addBookToList: function (book) {
-                    console.log('inserted:' + book.id);
+
                     self.currentBook.id = book.id;
                     self.books.push(book);
                     self.fetchBookDetails(self.books[self.books.length - 1]);
+                },
+                updateBookList: function (book) {
+                    // het geupdate boek uit de boekenlijst ophalen (dit is een lijst van BookBasic-elementen)
+                    var updatedBook = self.books.filter(b => b.id === book.id)[0];
+                    // gegevens aanpassen
+                    updatedBook.title = book.title;
                 },
                 cancel: function () {
                     var self = this;
                     self.isReadOnly = true;
                     self.isEdit = false;
-                    self.fetchBookDetails(self.currentBook);
+                    if (self.isEdit) {
+                        self.fetchBookDetails(self.currentBook);
+                    } else {
+                        self.fetchBookDetails(self.books[0]);
+                    }
                 },
+                deleteBook: function () {
+                    self = this;
+                    fetch(`${apiURL}Books/${self.currentBook.id}`, { method: 'DELETE' })
+                        .then(res => res.json())
+                        .then(function (res) {
+                            // boek verwijderen uit de lijst
+                            self.books.forEach(function (book, i) {
+                                if (book.id === self.currentBook.id) {
+                                    self.books.splice(i, 1);
+                                    return;
+                                }
+                            });
+                            // eerste boek selecteren
+                            if (self.books.length > 0)
+                                self.fetchBookDetails(self.books[0]);
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+
 
             }
         });
