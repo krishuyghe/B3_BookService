@@ -35,3 +35,15 @@ body {
         display: none;
     }
 }
+
+.bookTitle {
+    color: darkblue;
+    font-size: small;
+}
+
+.bookAuthorName {
+    color: darkred;
+    font-style: italic;
+    font-size: small;
+}
+
