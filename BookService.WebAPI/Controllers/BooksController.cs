@@ -50,6 +50,15 @@ namespace BookService.WebAPI.Controllers
             return Ok(await repository.GetDetailById(id));
         }
 
+        [HttpPost]
+        public async override Task<IActionResult> Post([FromBody] Book book)
+        {
+            book.Author = null;
+            book.Publisher = null;
+
+            return await base.Post(book);  
+        }
+
         // GET: api/books/imagebyname/book2.jpg
         [HttpGet]
         [Route("ImageByName/{filename}")]
