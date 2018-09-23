@@ -7,7 +7,7 @@ namespace BookService.MVC.Controllers
 {
     public class AuthorsController : Controller
     {
-        string baseuri = "http://localhost:53945/api/authors";
+        string baseuri = "https://localhost:44396/api/authors";
         public IActionResult Index()
         {
             string uri = $"{baseuri}/basic";
