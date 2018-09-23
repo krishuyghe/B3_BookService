@@ -57,6 +57,14 @@ namespace BookService.WebAPI.Repositories
                 .ToListAsync();
         }
 
+        public override async Task<Book> GetById(int id)
+        {
+            return  await db.Books
+                .Include(b => b.Author)
+                .Include(b => b.Publisher)
+                .FirstOrDefaultAsync(b => b.Id == id); 
+        }
+
         public async Task<BookDetail> GetDetailById(int id)
         {
             return mapper.Map<BookDetail>(

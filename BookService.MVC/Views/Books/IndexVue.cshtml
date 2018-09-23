@@ -15,18 +15,68 @@
             </ul>
         </nav>
     </header>
+    <div v-if="currentBook" class="col-md-4">
+        <h3>Details</h3>
+
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">Title</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" :value="currentBook.title" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">Author</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" :value="currentBook.author.lastName +' '  +currentBook.author.firstName" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">Publisher</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" :value="currentBook.publisher.name" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">Year</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" :value="currentBook.year" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">ISBN</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" :value="currentBook.isbn" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">Pages</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" :value="currentBook.numberOfPages" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">Price</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" :value="currentBook.price" readonly>
+                </div>
+            </div>
+        </form>
+    </div>
 </article>
+
 
 @section scripts{
     <script src="~/js/vue.js"></script>
     <script>
-        var apiURL = 'https://localhost:44396/api/books/basic';
+        var apiURL = 'https://localhost:44396/api/books/';
 
         var app = new Vue({
             el: '#app',
             data: {
                 message: 'Loading books...',
                 books: null,
+                currentBook: null,
             },
             created: function () {
                 var self = this;
@@ -35,7 +85,7 @@
             methods: {
                 fetchBooks: function () {
                     self = this;
-                    fetch(`${apiURL}`)
+                    fetch(`${apiURL}Basic`)
                         .then(res => res.json())
                         .then(function (books) {
                             books.forEach(function (book, i) {
@@ -43,14 +93,24 @@
                             });
                             self.books = books;
                             self.message = 'Overview';
+                            if (self.books.length > 0) {
+                                self.fetchBookDetails(self.books[0]);
+                            }
                         })
                         .catch(err => console.error('Fout: ' + err));
                 },
                 fetchBookDetails: function (book) {
                     self = this;
-                    self.books.forEach(function (book2, i) { book2.isActive = false; })
-                    book.isActive = true;
+                    fetch(`${apiURL}${book.id}`)
+                        .then(res => res.json())
+                        .then(function (res) {
+                            self.currentBook = res;
+                            self.books.forEach(function (book, i) { book.isActive = false; })
+                            book.isActive = true;
+                        })
+                        .catch(err => console.error('Fout: ' + err));
                 },
+
                 getBookClass: function (book) {
                     if (book.isActive) return 'list-group-item active';
                     return 'list-group-item';
